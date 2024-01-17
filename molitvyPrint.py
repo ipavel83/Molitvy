@@ -1,6 +1,7 @@
 #py3.7
 
 import sys
+import time
 import unicodedata
 
 # https://stackoverflow.com/questions/61601610/removing-all-non-letter-chars-from-a-string-with-accents-in-python?rq=3
@@ -18,7 +19,11 @@ if __name__ == '__main__':
     try:
         with open(filename, encoding="utf8") as txt:
             textToExtract =txt.read()
-            print(strip_accents(textToExtract))
+            textAsArray = strip_accents(textToExtract).splitlines()
+            for s in textAsArray:
+                if(s == ''):
+                    time.sleep(1)
+                print(s)
         
     except IOError:
         print(f"can't open file {filename}")

@@ -9,8 +9,10 @@ def strip_accents(s):
    return ''.join(c for c in unicodedata.normalize('NFD', s)
                   if unicodedata.category(c) != 'Mn')
 
-def printString(s):
-    print(s)
+def printMolitvu(s):
+    for t in s:   
+        print(t)
+        time.sleep(1)
 
 if __name__ == '__main__':
 
@@ -20,10 +22,14 @@ if __name__ == '__main__':
         with open(filename, encoding="utf8") as txt:
             textToExtract =txt.read()
             textAsArray = strip_accents(textToExtract).splitlines()
+            t = []
             for s in textAsArray:
                 if(s == ''):
+                    if t != []:
+                        printMolitvu(t);
+                    t = []
                     time.sleep(1)
-                print(s)
+                t.append(s)
         
     except IOError:
         print(f"can't open file {filename}")
